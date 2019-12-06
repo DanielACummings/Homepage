@@ -5,24 +5,37 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Inspire</title>
+	<title>Homepage</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body id="bg-image">
-	<div id="weather">
-		Your Weather Template
-	</div>
-
-	<div id="quote">
-		The Quote
-	</div>
-
-	<div>
-		A Todo List
-		<div id="todo-error"></div>
-		<form onsubmit=""></form>
-		<div id="todos"></div>
+	<div class="container text-white">
+		<div class="row">
+			<div class="col-11">
+				<div id="quote">
+					<h5>Inspirational Quote</h5>
+				</div>
+			</div>
+			<div class="col-1">
+				<div id="weather">
+					<span id="weather">
+						<!-- weather data inserted here -->
+					</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-12">
+				<div>
+					<h5>A Todo List</h5>
+					<div id="todo-error"></div>
+					<form onsubmit=""></form>
+					<div id="todos"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.js"></script>
