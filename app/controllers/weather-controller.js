@@ -8,7 +8,6 @@ import store from "../store.js"
 function drawWeather() {
   let weatherData = store.State.weather
   document.querySelector('#weather').innerHTML = weatherData.weatherTemplate
-  console.log("THE WEATHER MAN SAYS:", store.State.weather)
 }
 export default class WeatherController {
   constructor() {

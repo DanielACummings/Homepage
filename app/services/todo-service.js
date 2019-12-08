@@ -1,4 +1,5 @@
 import store from "../store.js"
+import Todo from "../models/todo.js"
 
 // @ts-ignore
 const todoApi = axios.create({
@@ -7,14 +8,23 @@ const todoApi = axios.create({
 })
 
 class TodoService {
-  async getTodos() {
+  async getTodosAsync() {
     console.log("Getting the Todo List")
     let res = await todoApi.get()
+    store.commit('todos', res.data.data)
+    console.log("ToDosFromTodoApi: ", res)
+    console.log("toDosFromState.todos: ", store.State.todos);
+
     //TODO Handle this response from the server
   }
 
   async addTodoAsync(todo) {
     let res = await todoApi.post("", todo)
+    store.commit('todos', res.data)
+    // store.saveState()
+    //should "res" in above line be "todo" as previously?
+    console.log("todos from store: ", store.State.todos);
+    this.getTodosAsync()
     //TODO Handle this response from the server (hint: what data comes back, do you want this?)
   }
 

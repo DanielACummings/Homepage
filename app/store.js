@@ -1,4 +1,5 @@
 import Weather from "./models/weather.js"
+import Todo from "./models/todo.js"
 
 let _state = {
   /**@type {Weather} */
@@ -49,6 +50,9 @@ class Store {
   get State() {
     return _state
   }
+  // saveState() {
+  //   localStorage.setItem("state", JSON.stringify(_state));
+  // }
   /**
    * Takes in a property to observe, and a function to run when it changes
    * @param {string} prop

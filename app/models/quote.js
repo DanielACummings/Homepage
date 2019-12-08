@@ -6,7 +6,8 @@ export default class Quote {
   get quoteTemplate() {
     return /*html*/ `
     <div>
-    ${this.quote}
+    "${this.quote}"
+    <br />
     -${this.author}
     </div>`
   }

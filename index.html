@@ -29,10 +29,16 @@
 		<div class="row">
 			<div class="col-12">
 				<div>
-					<h5>A Todo List</h5>
-					<div id="todo-error"></div>
-					<form onsubmit=""></form>
-					<div id="todos"></div>
+					<form onsubmit="app.todoController.addTodoAsync(event)">
+						<div class="form-group">
+							<label for="formGroupExampleInput">To Do List</label>
+							<input type="text" name="input" class="form-control" id="input" placeholder="Enter To Do...">
+							<button type="submit" class="btn btn-primary">Add</button>
+						</div>
+					</form>
+					<span id="todos">
+						<!-- todos inserted here -->
+					</span>
 				</div>
 			</div>
 		</div>
