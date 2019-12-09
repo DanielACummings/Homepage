@@ -1,5 +1,3 @@
-Demo: https://danielacummings.github.io/Homepage/
-
 # Inspire
 <div class="text-center">
     <img class="img-responsive" src="https://bcw.blob.core.windows.net/public/img/inspire.jpg"/>
