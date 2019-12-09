@@ -10,6 +10,7 @@ const todoApi = axios.create({
 class TodoService {
   async getTodosAsync() {
     console.log("Getting the Todo List")
+    // should I map todos into new Todos in the let res = line?
     let res = await todoApi.get()
     store.commit('todos', res.data.data.map(td => new Todo(td)))
     console.log("ToDosFromTodoApi: ", res)
@@ -21,8 +22,12 @@ class TodoService {
   async addTodoAsync(newTodo) {
     let res = await todoApi.post("", newTodo)
     console.log("response from addtodoasync: ", res);
-    store.commit('todos', res.data.data.map(td => new Todo(td)))
-    //should "res" in above line be "todo" as previously?
+    // below line is not a function when containing ".map(td => new Todo(td))". Why?
+    // When it doesn't contain that, todos.forEach in the controller drawTodos() function isn't a function even tho that same function works on page reload.
+    debugger
+    // debugger says map & td are undefined. Can't td be called anything for the lambda? Is map undefined because td is undefined?
+    // store is empty when adding a new todo even tho the store is console logged as having everything the API does on page load. However, the store still is said by the debugger to be empty after the res is comitted to the store...
+    store.commit('todos', res.data.data)
     console.log("todos from store: ", store.State.todos);
     this.getTodosAsync()
     //TODO Handle this response from the server (hint: what data comes back, do you want this?)
@@ -39,9 +44,8 @@ class TodoService {
   }
 
   async removeTodoAsync(todoId) {
-    let todoToRem = store.State.todos.findIndex(todo => todo.id == todoId)
-    store.State.todos.splice(todoToRem, 1)
-
+    await todoApi.delete(todoId)
+    this.getTodosAsync()
     //TODO Work through this one on your own
     //		what is the request type
     //		once the response comes back, what do you need to insure happens?

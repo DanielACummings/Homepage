@@ -6,6 +6,7 @@ import Todo from "../models/todo.js"
 function _drawTodos() {
   let template = ''
   let todos = store.State.todos
+  // forEach not a function according to debugger only after a new Todo is added
   todos.forEach(todo => template += todo.todoTemplate)
   document.querySelector('#todos').innerHTML = template
 }
@@ -21,6 +22,7 @@ export default class TodoController {
     //TODO Remember to register your subscribers
     this.getTodosAsync()
     store.subscribe('todos', _drawTodos)
+    store.subscribe('todos', _drawTodoCount)
   }
 
   async getTodosAsync() {
