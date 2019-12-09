@@ -1,12 +1,12 @@
 import todoService from "../services/todo-service.js"
 import store from "../store.js"
+import Todo from "../models/todo.js"
 
 //TODO Create the render function
 function _drawTodos() {
   let template = ''
   let todos = store.State.todos
-  // todos is currently an empty array. 0.forEach
-  todos.forEach(todos => template += todos.todoTemplate)
+  todos.forEach(todo => template += todo.todoTemplate)
   document.querySelector('#todos').innerHTML = template
 }
 export default class TodoController {
@@ -27,12 +27,13 @@ export default class TodoController {
   async addTodoAsync(e) {
     e.preventDefault()
     let formData = e.target
-    console.log("e.target: ", formData);
-    console.log("todoFormSubmition", formData);
     let newTodo = {
       description: formData.input.value
     }
-    console.log("newTodo variable", newTodo);
+    console.log('description property value: ', formData.input.value);
+    // when console.log("store todos after submit: ", store.State.todos) is on this line, it logs only the recently made to do, but when todos are drawn based on the number of to dos in the state, all of them are represented with an "undefined."
+    formData.reset()
+      ;
 
     try {
       await todoService.addTodoAsync(newTodo)

@@ -11,7 +11,7 @@ class TodoService {
   async getTodosAsync() {
     console.log("Getting the Todo List")
     let res = await todoApi.get()
-    store.commit('todos', res.data.data)
+    store.commit('todos', res.data.data.map(td => new Todo(td)))
     console.log("ToDosFromTodoApi: ", res)
     console.log("toDosFromState.todos: ", store.State.todos);
 
@@ -20,7 +20,9 @@ class TodoService {
 
   async addTodoAsync(todo) {
     let res = await todoApi.post("", todo)
-    store.commit('todos', res.data)
+    console.log("response from addtodoasync: ", res);
+
+    store.commit('todos', res.data.data)
     // store.saveState()
     //should "res" in above line be "todo" as previously?
     console.log("todos from store: ", store.State.todos);
