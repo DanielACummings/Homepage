@@ -18,12 +18,10 @@ class TodoService {
     //TODO Handle this response from the server
   }
 
-  async addTodoAsync(todo) {
-    let res = await todoApi.post("", todo)
+  async addTodoAsync(newTodo) {
+    let res = await todoApi.post("", newTodo)
     console.log("response from addtodoasync: ", res);
-
-    store.commit('todos', res.data.data)
-    // store.saveState()
+    store.commit('todos', res.data.data.map(td => new Todo(td)))
     //should "res" in above line be "todo" as previously?
     console.log("todos from store: ", store.State.todos);
     this.getTodosAsync()
@@ -41,6 +39,9 @@ class TodoService {
   }
 
   async removeTodoAsync(todoId) {
+    let todoToRem = store.State.todos.findIndex(todo => todo.id == todoId)
+    store.State.todos.splice(todoToRem, 1)
+
     //TODO Work through this one on your own
     //		what is the request type
     //		once the response comes back, what do you need to insure happens?

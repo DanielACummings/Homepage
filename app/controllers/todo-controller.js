@@ -9,17 +9,24 @@ function _drawTodos() {
   todos.forEach(todo => template += todo.todoTemplate)
   document.querySelector('#todos').innerHTML = template
 }
+function _drawTodoCount() {
+  let count = 0
+  let todos = store.State.todos
+  todos.forEach(todo => count += 1)
+  let template = count.toString()
+  document.querySelector('#todo-count').innerHTML = `<div>${template}</div>`
+}
 export default class TodoController {
   constructor() {
     //TODO Remember to register your subscribers
     this.getTodosAsync()
-
     store.subscribe('todos', _drawTodos)
   }
 
   async getTodosAsync() {
     try {
       await todoService.getTodosAsync()
+      _drawTodoCount()
     } catch (error) {
       console.log(error)
     }

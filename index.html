@@ -32,6 +32,9 @@
 					<form onsubmit="app.todoController.addTodoAsync(event)">
 						<div class="form-group">
 							<label for="formGroupExampleInput">To Do List</label>
+							<span id="todo-count">
+								<!-- total number of todos inserted here -->
+							</span>
 							<input type="text" name="input" class="form-control" id="input" placeholder="Enter To Do...">
 							<button type="submit" class="btn btn-primary">Add</button>
 						</div>

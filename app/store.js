@@ -62,7 +62,7 @@ class Store {
     _validateSubscriber(fn, prop)
     _listeners[prop].push(fn)
   }
-
+  0
   /**
    * Takes in a property to set, and the value to set it to
    * @param {string} prop
